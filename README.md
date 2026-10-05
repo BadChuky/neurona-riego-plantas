@@ -16,7 +16,7 @@ función de activación sigmoide que decide si una planta necesita riego.
 Requisito: tener [uv](https://docs.astral.sh/uv/) instalado.
 
 ```bash
-git clone <URL-DEL-REPOSITORIO>
+git clone (https://github.com/BadChuky/neurona-riego-plantas)
 cd neurona-riego-plantas
 uv sync
 uv run main.py
