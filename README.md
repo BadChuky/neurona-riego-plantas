@@ -1,5 +1,7 @@
 # Neurona artificial para el riego de plantas
 
+Hecho por: Jairo Andres Niño Santos
+
 Actividad de Inteligencia Artificial: una neurona artificial (2 entradas, 2 pesos y 1 sesgo) con
 función de activación sigmoide que decide si una planta necesita riego.
 
