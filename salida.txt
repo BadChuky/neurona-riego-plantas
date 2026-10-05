@@ -1,0 +1,92 @@
+
+Datos normalizados:
+[[0.8  0.36]
+ [0.7  0.44]
+ [0.65 0.56]
+ [0.55 0.5 ]
+ [0.5  0.64]
+ [0.4  0.6 ]
+ [0.35 0.5 ]
+ [0.3  0.64]
+ [0.2  0.7 ]
+ [0.1  0.76]]
+
+======================================================================
+ENTRENAMIENTO BASE: tasa_aprendizaje=0.5, epocas=10000
+======================================================================
+  Época      1 | error cuadrático medio = 0.246754
+  Época   1000 | error cuadrático medio = 0.067509
+  Época   2000 | error cuadrático medio = 0.049732
+  Época   3000 | error cuadrático medio = 0.040776
+  Época   4000 | error cuadrático medio = 0.034961
+  Época   5000 | error cuadrático medio = 0.030761
+  Época   6000 | error cuadrático medio = 0.027543
+  Época   7000 | error cuadrático medio = 0.024980
+  Época   8000 | error cuadrático medio = 0.022884
+  Época   9000 | error cuadrático medio = 0.021133
+  Época  10000 | error cuadrático medio = 0.019646
+
+Resultados del entrenamiento base:
+  Peso de la humedad     : -19.5032
+  Peso de la temperatura : 2.3101
+  Sesgo                  : 7.4022
+  Error final (MSE)      : 0.019645
+
+Probabilidad calculada para cada caso de entrenamiento:
+  Caso | Humedad | Temp. | Esperado | Probabilidad | Respuesta
+     1 |     80% |   18C |        0 |       0.0006 |         0
+     2 |     70% |   22C |        0 |       0.0053 |         0
+     3 |     65% |   28C |        0 |       0.0183 |         0
+     4 |     55% |   25C |        0 |       0.1025 |         0
+     5 |     50% |   32C |        0 |       0.2951 |         0
+     6 |     40% |   30C |        1 |       0.7285 |         1
+     7 |     35% |   25C |        1 |       0.8496 |         1
+     8 |     30% |   32C |        1 |       0.9539 |         1
+     9 |     20% |   35C |        1 |       0.9941 |         1
+    10 |     10% |   38C |        1 |       0.9993 |         1
+
+======================================================================
+PREDICCIONES CON CONDICIONES NUEVAS (modelo base)
+======================================================================
+  Humedad | Temperatura | Probabilidad | Decisión
+      75% |        30C |       0.0029 | 0 (No regar)
+      45% |        34C |       0.5490 | 1 (Regar)
+      25% |        22C |       0.9719 | 1 (Regar)
+      50% |        25C |       0.2325 | 0 (No regar)
+      30% |        40C |       0.9677 | 1 (Regar)
+
+======================================================================
+EXPERIMENTOS CON LOS PARÁMETROS
+======================================================================
+Experimento          Épocas  Tasa  Error final  Aciertos  P(45%,34C)  Época<0.05  Aprendizaje
+Prueba base           10000   0.5     0.019645     10/10      0.5490        1978  rápido
+Pocas épocas            100   0.5     0.165623     10/10      0.5217       nunca  insuficiente
+Cantidad intermedia    1000   0.5     0.067481     10/10      0.5793       nunca  insuficiente
+Más épocas            20000   0.5     0.011705     10/10      0.5263        1978  rápido
+Tasa pequeña          10000  0.01     0.130048     10/10      0.5388       nunca  insuficiente
+Tasa moderada         10000   0.1     0.049728     10/10      0.5853        9885  lento
+Tasa alta             10000   1.0     0.011705     10/10      0.5263         989  rápido
+Tasa muy alta         10000   2.0     0.006566     10/10      0.5082         495  rápido
+
+======================================================================
+COMPARACIÓN DE UMBRALES (con los pesos del modelo base)
+======================================================================
+Caso                Hum.  Temp.    Prob.  U=0.4  U=0.5  U=0.6
+Entrenamiento 1      80%    18C   0.0006      0      0      0
+Entrenamiento 2      70%    22C   0.0053      0      0      0
+Entrenamiento 3      65%    28C   0.0183      0      0      0
+Entrenamiento 4      55%    25C   0.1025      0      0      0
+Entrenamiento 5      50%    32C   0.2951      0      0      0
+Entrenamiento 6      40%    30C   0.7285      1      1      1
+Entrenamiento 7      35%    25C   0.8496      1      1      1
+Entrenamiento 8      30%    32C   0.9539      1      1      1
+Entrenamiento 9      20%    35C   0.9941      1      1      1
+Entrenamiento 10     10%    38C   0.9993      1      1      1
+Nuevo                75%    30C   0.0029      0      0      0
+Nuevo                45%    34C   0.5490      1      1      0  <-- cambia
+Nuevo                25%    22C   0.9719      1      1      1
+Nuevo                50%    25C   0.2325      0      0      0
+Nuevo                30%    40C   0.9677      1      1      1
+
+Los pesos y el sesgo son los mismos en las tres columnas: el umbral solo
+cambia cómo se interpreta la probabilidad, no lo aprendido.
